@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maven Dependencies</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .dependency {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .dependency-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .dependency-header h2 {
+            margin: 0;
+            font-size: 20px;
+        }
+        .dependency-details {
+            margin-top: 10px;
+        }
+        .dependency-version {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Maven Dependencies</h1>
+    <a href="/"> Go back to home</a>
+    <div id="dependenciesList">
+        {% for pom, dependencies in Dependencies.items() %}
+            <h2>POM: {{ pom }}</h2>
+            {% for groupId, artifactId, version in dependencies %}
+                <div class="dependency">
+                    <div class="dependency-header">
+                        <h2>{{ groupId }}:{{ artifactId }}</h2>
+                        <span>Version: {{ version or 'N/A' }}</span>
+                    </div>
+                    <div class="dependency-version">Group: {{ groupId }}</div>
+                    <div class="dependency-details">Artifact: {{ artifactId }}</div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+</body>
+</html>

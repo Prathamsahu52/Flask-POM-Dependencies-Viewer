@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Repositories</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .repo {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .repo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .repo-header h2 {
+            margin: 0;
+            font-size: 20px;
+        }
+        .repo-header a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        .repo-description {
+            margin-top: 10px;
+        }
+        .repo-owner {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>GitHub Repositories</h1>
+    <div id="reposList">
+        {% for repo in repos %}
+            <div class="repo">
+                <div class="repo-header">
+                    <h2><a href="{{ repo.html_url }}" target="_blank">{{ repo.name }}</a></h2>
+                    <span>Language: {{ repo.language or 'N/A' }}</span>
+                </div>
+                <div class="repo-description">{{ repo.description or 'No description' }}</div>
+                <div class="repo-owner">Owner: {{ repo.owner.login }}</div>
+                <h2><a href="/search?url={{repo.html_url}}&auth_token={{auth_token}}">Parse Repo</a></h2>
+            </div>
+        {% endfor %}
+    </div>
+
+
+</body>
+</html>
